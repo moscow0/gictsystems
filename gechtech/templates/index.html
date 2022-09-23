@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %} GictSystems  {% endblock %}
+{% load rest_framework %}
+{% block content %}
+    <div class="jumbotron">
+      <div class="col-md-6">
+          /Index
+
+          <hr/>
+          <p>
+              <a href="{% url "get" %}"> JSON GET Request </a> <br/>
+              <a href="{% url "post" %}"> JSON POST Request </a>
+          </p>
+      </div>
+    </div>
+{% endblock %}

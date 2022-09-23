@@ -1,0 +1,66 @@
+{% extends 'base.html'%}
+ <meta http-equiv="refresh" content="10">
+
+{% block title %}
+    GictSystems
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid" style="margin-top: 30px;">
+        <div class="row">
+         <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th> ID </th>
+                                <th> Message </th>
+                                <th> Age </th>
+                                <th> Edit </th>
+                              </tr>
+                            </thead>
+               {% for item in items %}
+                   {% if item %}
+
+                            <tbody>
+                              <tr>
+                                <td> {{ item.ID }}</td>
+                                <td> {{ item.Message }}</td>
+                                <td> {{ item.Age }}</td>
+                                <td> <a href="#" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#exampleModalCenter"> </a></td>
+                              </tr>
+                            </tbody>
+
+                   {% endif %}
+                   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle"> Item: {{ item.ID }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                           <form method="post">
+                                 {% csrf_token %}
+                               Message: <input placeholder="Message" value="{{ item.Message }}" class="form-control"><br/>
+                               Age: <input placeholder="Age" value="{{ item.Age }}" class="form-control">
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button id="save" type="submit" class="btn btn-primary" onclick="function f() {
+                                  alert('Item saved')
+                                }">Save changes</button>
+                          </div>
+                           </form>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                {% endfor %}
+          </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+
+{% endblock %}
